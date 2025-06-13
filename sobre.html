@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello Kitty Store</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="icon" href="./assets/fav.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./assets/css/loja.css">
+  <link rel="stylesheet" href="./assets/css/sobre.css">
+  <link rel="stylesheet" href="./assets/css/carrossel.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="./assets/css/header.css">
+  <link rel="stylesheet" href="./assets/css/footer.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link href="https://fonts.googleapis.com/css??family-Montserrat:wght@200;300&display-swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- ICONS -->
+  <script src="https://kit.fontawesome.com/527f090d2a.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+  <div id="app">
+    <header>
+      <img class="fof" src="./img/fofura.png" alt="a">
+      <h1 class="title">Kitty Store</h1>
+      <nav class="menu">
+        <ul>
+          <li><a href="./index.html">Início</a></li>
+          <li><a href="./loja.html">Loja</a></li>
+          <li><a href="./sobre.html">Sobre</a></li>
+          <li class="dropdown"></li>
+
+      </nav>
+    </header>
+
+
+
+
+
+
+    <div class="carousel">
+      <div class="slide active">
+        <img src="./img/Hello5.jpg" alt="Imagem 1">
+      </div>
+      <div class="slide active">
+        <img src="./img/Hello7.png" alt="Imagem 2">
+      </div>
+      <div class="slide active">
+        <img src="./img/Hello9.jpg" alt="Imagem 3">
+      </div>
+      <button class="prev" onclick="prevSlide()">&#10094;</button>
+      <button class="next" onclick="nextSlide()">&#10095;</button>
+    </div>
+    <br>
+    <br>
+
+
+    <div class="sobre-wrapper">
+
+      <div class="container">
+        <h2>Quem somos </h2>
+        <p>
+          A <strong>Kitty Store</strong> nasceu do amor por tudo que é kawaii e encantador.
+          Somos apaixonados por compartilhar a magia da Hello Kitty com o mundo.
+        </p>
+      </div>
+
+      <div class="container">
+        <h2>Nossos Produtos </h2>
+        <p>
+          Trabalhamos com produtos 100% originais e cuidadosamente selecionados:
+          Funkos, acessórios, pelúcias, papelaria e muito mais.
+        </p>
+      </div>
+
+      <div class="container">
+        <h2>Nosso Compromisso </h2>
+        <p>
+          Embalamos cada pedido com carinho e cuidado. Garantimos qualidade,
+          autenticidade e uma experiência de compra mágica para você!
+        </p>
+      </div>
+
+      <div class="missao-cupom-wrapper">
+        <p class="missao">
+          🌸 Nossa missão é espalhar fofura pelo mundo, com um atendimento personalizado e produtos incríveis.
+          Obrigado por fazer parte da família <strong>Kitty Store</strong>! 💖
+        </p>
+
+        <div class="cupom-container">
+          <h3>🎁 Cupom Especial para Você!</h3>
+          <p>Use o código <span class="cupom-code">KITTYLOVE15</span> e ganhe 15% de desconto na sua próxima compra!<br>
+            Válido até 31/12/2025. Aproveite!
+          </p>
+        </div>
+      </div>
+
+
+
+
+    </div>
+
+
+
+
+    <!-- RODAPÉ-->
+    <footer>
+      <div class="icones-sociais">
+        <a href="https://wa.me/SEUNUMERO" target="_blank">
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+        <a href="mailto:contato@hellokittyloja.com">
+          <i class="fas fa-envelope"></i> E-mail
+        </a>
+        <a href="https://instagram.com/sualoja" target="_blank">
+          <i class="fab fa-instagram"></i> Instagram
+        </a>
+      </div>
+      <p>© 2025 Hello Kitty Funko Store - Feito com carinho </p>
+      <br>
+    </footer>
+  </div>
+
+
+
+  <script src="./script.js"></script>
+
+
+</body>
+
+</html>

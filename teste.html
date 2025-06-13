@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello Kitty Store</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/loja.css">
+  <link rel="stylesheet" href="./script.js">
+  <link rel="icon" href="./assets/fav.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./loja.html">
+  <link rel="stylesheet" href="./sobre.html">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link href="https://fonts.googleapis.com/css??family-Montserrat:wght@200;300&display-swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- ICONS -->
+  <script src="https://kit.fontawesome.com/527f090d2a.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+  <div id="app">
+    <header>
+      <img class="fof" src="./img/fofura.png" alt="a">
+      <h1 class="title">Kitty Store</h1>
+      <nav class="menu">
+        <ul>
+          <li><a href="./index.html">Início</a></li>
+          <li><a href="./loja.html">Loja</a></li>
+          <li><a href="./sobre.html">Sobre</a></li>
+          <li class="dropdown"></li>
+
+      </nav>
+    </header>
+
+    <div id="app">
+
+      <div class="cart-container">
+        <div class="cart-icon-wrapper" @click="toggleCart">
+          <i class="fas fa-shopping-cart" style="color: #ff69b4; font-size: 24px;"></i>
+          <span class="cart-count" v-if="cart.length > 0">{{ cart.length }}</span>
+        </div>
+
+        <transition name="fade">
+          <div class="cart-dropdown" v-if="showCart">
+            <div class="cart-header">
+              <h3>Seu Carrinho</h3>
+            </div>
+            <div class="cart-content">
+              <div v-if="cart.length === 0">
+                <p>Seu carrinho está vazio</p>
+              </div>
+              <ul v-else>
+                <li v-for="(item, index) in cart" :key="index">
+                  {{ item.name }} - R$ {{ item.price.toFixed(2) }}
+                  <button @click="removeFromCart(index)" class="remove-btn">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </li>
+              </ul>
+              <div class="cart-total" v-if="cart.length > 0">
+                <hr>
+                <p>Total: R$ {{ cartTotal.toFixed(2) }}</p>
+                <button class="checkout-btn">Finalizar Compra</button>
+              </div>
+            </div>
+          </div>
+        </transition>
+      </div>
+
+      <div class="product-display">
+        <div class="product-container">
+          <div class="product-image">
+            <img class="prod" :src="image" alt="Produto Hello Kitty" />
+          </div>
+
+          <div class="product-info">
+            <h1>{{ product_title + " " + brand }}</h1>
+            <p v-if="inStock > 10">Em estoque</p>
+            <p v-else-if="inStock < 10 && inStock > 1"></p>
+            <p v-else>Sem estoque</p>
+
+            <ul>
+              <li v-for="detail in details">{{ detail }}</li>
+            </ul>
+
+            <div v-for="variant in variants" :key="variant.id" @mouseover="changeImage(variant.image)"
+              class="color-circle" :style="{ backgroundColor: variant.color }"></div>
+
+            <button class="button" :class="{ disabledButton: inStock < 1 }" @click="addToCart" :disabled="inStock < 1">
+              <i class="fas fa-shopping-cart"></i> Adicionar ao Carrinho
+            </button>
+          </div>
+        </div>
+      </div>
+      <footer>
+        <p>© 2025 Hello Kitty Funko Store - Feito com carinho </p>
+        <br>
+        <img class="foo-log" src="./img/footer.png" alt="a">
+      </footer>
+      <script>
+        const { createApp, ref } = Vue;
+
+        createApp({
+          setup() {
+            const cart = ref(0);
+            const image = ref("img/TATTO.jpg");
+            const inStock = ref(9);
+
+            const addToCart = () => {
+              cart.value += 1;
+            };
+
+            const changeImage = (variantImage) => {
+              image.value = variantImage;
+            };
+
+            return {
+              product_title: ref("Funko-Pop"),
+              brand: "Hello Kitty",
+              image,
+              inStock,
+              variants: [
+                { id: 1, color: "pink", image: "img/hk3.jpg" },
+                { id: 2, color: "yellow", image: "img/hk2.jpg" }
+              ],
+              cart,
+              addToCart,
+              changeImage
+            };
+          }
+        }).mount("#app");
+
+      </script>
+
+
+      <script src="./script.js"></script>
+
+
+</body>
+
+</html>

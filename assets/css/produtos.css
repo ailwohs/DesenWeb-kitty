@@ -1,0 +1,152 @@
+/* Fonte geral */
+* {
+  font-family: 'Quicksand', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.product-display {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  min-height: 70vh;
+}
+
+.product-container {
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 20px 40px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 100%;
+  text-align: center;
+}
+
+
+.product-image img {
+  width: 100%;
+  max-width: 350px; /* maior tamanho no desktop */
+  height: auto;
+  border-radius: 12px;
+  border: 3px solid #ffc0cb;
+  padding: 8px;
+}
+.product-info h1 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  color: #ff69b4;
+}
+
+.variants {
+  margin-top: 10px;
+}
+
+.product-info p {
+  margin: 5px 0;
+  font-weight: 500;
+  color: #5a2a5e;
+}
+
+ul {
+  padding-left: 18px;
+  margin: 10px 0;
+  color: #5a2a5e;
+}
+
+.color-circle {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  margin: 0 6px;
+  border: 2px solid #ddd;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.color-circle:hover {
+  transform: scale(1.2);
+  border-color: #aaa;
+}
+
+.button {
+  background-color: #ff69b4;
+  border: none;
+  padding: 10px 20px;
+  color: white;
+  font-size: 1rem;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 10px;
+}
+
+.button:hover {
+  background-color: #ff85c1;
+}
+
+.disabledButton {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+.cart {
+  text-align: right;
+  padding: 10px 20px;
+  font-weight: bold;
+  color: #d63384;
+}
+
+
+.menu ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.menu a:hover {
+  color: #fff5f8;
+}
+
+/* Animação */
+
+.icones-sociais {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
+  margin: 20px 0;
+}
+
+.icones-sociais a {
+  text-decoration: none;
+  font-size: 18px;
+  color: #ff69b4;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.3s ease;
+}
+
+.icones-sociais a i {
+  font-size: 24px;
+}
+
+.icones-sociais a:hover {
+  transform: scale(1.1);
+}
+
+
+
+

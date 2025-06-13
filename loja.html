@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello Kitty Store</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="icon" href="./assets/fav.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./assets/css/header.css">
+  <link rel="stylesheet" href="./assets/css/loja.css">
+  <link rel="stylesheet" href="./assets/css/footer.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- ICONS -->
+  <script src="https://kit.fontawesome.com/527f090d2a.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!-- MENU -->
+    <header>
+      <img class="fof" src="./img/fofura.png" alt="a">
+      <h1 class="title">Kitty Store</h1>
+      <nav class="menu">
+        <ul>
+          <li><a href="./index.html">Início</a></li>
+          <li><a href="./loja.html">Loja</a></li>
+          <li><a href="./sobre.html">Sobre</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- CARRINHO -->
+    <div class="cart-container" @click="toggleCart">
+      <div class="cart-icon-wrapper" title="Ver carrinho">
+        <i class="fas fa-shopping-cart fa-lg"></i>
+        <div class="cart-count" v-if="cartItems.length">{{ totalQuantity }}</div>
+      </div>
+      <transition name="fade">
+        <div class="cart-dropdown" v-if="showCart">
+          <div class="cart-header">Seu Carrinho</div>
+          <div class="cart-content" v-if="cartItems.length">
+            <ul>
+              <li v-for="(item, index) in cartItems" :key="index">
+                {{ item.name }} - <strong>Qtd:</strong> {{ item.quantity }}
+                <button class="remove-btn" @click.stop="removeFromCart(index)" title="Remover">&times;</button>
+              </li>
+            </ul>
+            <div class="cart-total">Total: R$ {{ cartTotal.toFixed(2) }}</div>
+            <button class="checkout-btn" @click="checkout">Finalizar Compra</button>
+          </div>
+          <div class="cart-content" v-else>
+            Seu carrinho está vazio.
+          </div>
+        </div>
+      </transition>
+    </div>
+   
+    <!-- PRODUTOS -->
+     <main>
+        <h2>PRODUTOS KITTY STORE</h2>
+     </main>
+  
+  
+
+    <div class="products-grid">
+      <div v-for="(product, index) in products" :key="index" class="page-container">
+        <div class="product-box">
+          <h1 class="product-title">Descrição</h1>
+          <div class="product-content">
+            <div class="product-info">
+              <p>{{ product.description }}</p>
+            </div>
+            <div class="product-image">
+              <img :src="product.currentImage" :alt="product.title" />
+            </div>
+          </div>
+        </div>
+
+        <div class="product-info">
+          <h1>{{ product.title }} - {{ product.brand }}</h1>
+          <p v-if="product.inStock > 10" class="in-stock">Em estoque: {{ product.inStock }} unidades</p>
+          <p v-else-if="product.inStock > 0" class="low-stock">Quase acabando: {{ product.inStock }} unidades restantes
+          </p>
+          <p v-else class="out-stock">Sem estoque</p>
+
+          <ul class="product-details">
+            <li v-for="detail in product.details" :key="detail">{{ detail }}</li>
+          </ul>
+
+          <div class="variants">
+            <div v-for="variant in product.variants" :key="variant.id" class="color-circle"
+              :style="{ backgroundColor: variant.color }" @mouseover="product.currentImage = variant.image"
+              :title="'Cor: ' + variant.colorName">
+              {{ variant.colorName }}
+            </div>
+          </div>
+
+          <p class="price">Preço: R$ {{ product.price.toFixed(2) }}</p>
+
+          <button class="button" :disabled="product.inStock === 0" @click="addToCart(product)">
+            Adicionar ao Carrinho
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- BOTÃO LOJA -->
+    <br>
+
+    <!-- RODAPÉ -->
+
+    <footer>
+      <p>© 2025 Hello Kitty Funko Store - Feito com carinho</p>
+      <div class="icones-sociais">
+        <a href="https://wa.me/SEUNUMERO" target="_blank">
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+        <a href="mailto:contato@hellokittyloja.com">
+          <i class="fas fa-envelope"></i> E-mail
+        </a>
+        <a href="https://instagram.com/sualoja" target="_blank">
+          <i class="fab fa-instagram"></i> Instagram
+        </a>
+      </div>
+  </div>
+  </footer>
+
+
+
+  <!-- VUE APP -->
+  <script>
+    const { createApp, ref, computed } = Vue;
+
+    createApp({
+      setup() {
+        const products = ref([
+          {
+            id: 1,
+            title: 'Kitty Nova York',
+            inStock: 9,
+            price: 99.9,
+            description: 'Personaliza da sua cor favorita!',
+            details: ['Altura: 10cm', 'Material: Vinil', 'Edição limitada'],
+            variants: [
+              { id: 1, color: '#05a4df', colorName: 'Azul', image: 'img/h2azul.png' },
+              { id: 2, color: '#e0e500', colorName: 'Amarela', image: 'img/h2amarela.png' },
+              { id: 3, color: '#ffc0cb', colorName: 'Rosa', image: 'img/h2rosa.png' },
+              { id: 4, color: '#b70403', colorName: 'Vermelha', image: 'img/h2vermelha.png' },
+              { id: 5, color: '#f9550c', colorName: 'Laranja', image: 'img/h2laranja.png' }
+            ],
+            currentImage: 'img/h2rosa.png'
+          },
+          {
+            id: 2,
+            title: 'Kitty Aniversário',
+            inStock: 5,
+            price: 109.9,
+            description: 'Personaliza da sua cor favorita!',
+            details: ['Altura: 12cm', 'Material: Vinil', 'Produto oficial'],
+            variants: [
+              { id: 1, color: '#b70403', colorName: 'Vermelha', image: 'img/hk4.jpg' },
+              { id: 2, color: '#05a4df', colorName: 'Azul', image: 'img/h4azul.png' },
+              { id: 3, color: '#ffc0cb', colorName: 'Rosa', image: 'img/h4rosa.png' },
+              { id: 4, color: '#a7f442', colorName: 'Verde', image: 'img/h4verde.png' },
+              { id: 5, color: '#e0e500', colorName: 'Amarelo', image: 'img/h4amarelo.png' }
+            ],
+            currentImage: 'img/h4rosa.png'
+          },
+          {
+            id: 3,
+            title: 'Kitty Miojo',
+            inStock: 3,
+            price: 119.9,
+            description: 'Personaliza da sua cor favorita!',
+            details: ['Altura: 9cm', 'Material: Vinil', 'Produto oficial'],
+            variants: [
+              { id: 1, color: '#a7f442', colorName: 'Verde', image: 'img/h3verde.png' },
+              { id: 2, color: '#ffc0cb', colorName: 'Rosa', image: 'img/h3rosa.png' },
+              { id: 3, color: '#e0e500', colorName: 'Amarelo', image: 'img/h3amarelo.png' },
+              { id: 4, color: '#05a4df', colorName: 'Azul', image: 'img/h3azul.png' },
+              { id: 5, color: '#b70403', colorName: 'Vermelha', image: 'img/hk3.jpg' }
+            ],
+            currentImage: 'img/h3rosa.png'
+          },
+          {
+            id: 4,
+            title: 'Kitty Unicórnio',
+            inStock: 5,
+            price: 109.9,
+            description: 'Personaliza da sua cor favorita!',
+            details: ['Altura: 12cm', 'Material: Vinil', 'Produto oficial'],
+            variants: [
+              { id: 1, color: '#05a4df', colorName: 'Azul', image: 'img/h1azul.png' },
+              { id: 2, color: '#b70403', colorName: 'Vermelha', image: 'img/h1vermelha.png' },
+              { id: 3, color: '#e0e500', colorName: 'Amarela', image: 'img/h1amarelo.png' },
+              { id: 4, color: '#ffc0cb', colorName: 'Rosa', image: 'img/hk1.jpg' },
+              { id: 5, color: '#a7f442', colorName: 'Verde', image: 'img/h1verde.png' }
+            ],
+            currentImage: 'img/h1azul.png'
+          },
+
+          {
+            id: 5,
+            title: 'Kitty Clássica',
+            inStock: 5,
+            price: 109.9,
+            description: 'Personaliza da sua cor favorita!',
+            details: ['Altura: 12cm', 'Material: Vinil', 'Produto oficial'],
+            variants: [
+              { id: 1, color: '#05a4df', colorName: 'Azul', image: 'img/h5azul.png' },
+              { id: 2, color: '#ffc0cb', colorName: 'Rosa', image: 'img/h5rosa.png' },
+              { id: 3, color: '#e0e500', colorName: 'Amarela', image: 'img/h5amarela.png' },
+              { id: 4, color: '#b70403', colorName: 'Vermelha', image: 'img/h5vermelha.jpg' },
+              { id: 5, color: '#a7f442', colorName: 'Verde', image: 'img/h5verde.png' }
+            ],
+            currentImage: 'img/h5rosa.png'
+          },
+
+          // Você pode adicionar mais produtos aqui se quiser
+        ]);
+
+        const cartItems = ref([]);
+        const showCart = ref(false);
+
+        const totalQuantity = computed(() =>
+          cartItems.value.reduce((acc, item) => acc + item.quantity, 0)
+        );
+
+        const cartTotal = computed(() =>
+          cartItems.value.reduce((acc, item) => acc + item.quantity * item.price, 0)
+        );
+
+        const addToCart = (product) => {
+          const existingItem = cartItems.value.find(item => item.id === product.id);
+          if (existingItem) {
+            existingItem.quantity++;
+          } else {
+            cartItems.value.push({
+              id: product.id,
+              name: `${product.title} - ${product.brand}`,
+              quantity: 1,
+              price: product.price
+            });
+          }
+          if (product.inStock > 0) product.inStock--;
+        };
+
+        const removeFromCart = (index) => {
+          const item = cartItems.value[index];
+          const product = products.value.find(p => p.id === item.id);
+          if (product) product.inStock += item.quantity;
+          cartItems.value.splice(index, 1);
+        };
+
+        const toggleCart = () => {
+          showCart.value = !showCart.value;
+        };
+
+        const checkout = () => {
+          alert(`Compra finalizada! Total: R$ ${cartTotal.value.toFixed(2)}`);
+          cartItems.value = [];
+          // Você poderia também repor os estoques aqui, se quiser
+          showCart.value = false;
+        };
+
+        return {
+          products,
+          cartItems,
+          showCart,
+          totalQuantity,
+          cartTotal,
+          addToCart,
+          removeFromCart,
+          toggleCart,
+          checkout
+        };
+      }
+    }).mount('#app');
+  </script>
+</body>
+
+</html>

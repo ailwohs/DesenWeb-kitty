@@ -1,0 +1,137 @@
+* {
+  font-family: 'Quicksand', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+main {
+  padding: 2rem;
+  text-align: center;
+}
+
+.carrossel {
+  display: flex;
+  overflow-x: auto;
+  gap: 1rem;
+  padding: 1rem 0;
+  scroll-snap-type: x mandatory;
+}
+
+.produto {
+  background: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 1rem;
+  width: 50%; /* agora ocupa quase a tela toda */
+  max-width: 260px; /* para limitar em telas muito grandes */
+  flex: 0 0 auto;
+  scroll-snap-align: center;
+  box-shadow: 0 4px 10px rgba(255, 182, 193, 0.5);
+  margin: 0 auto; /* centraliza visualmente quando possível */
+}
+.produto img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  border-radius: 15px;
+}
+
+.produto h3 {
+  margin: 0.5rem 0;
+  transform: scale(1.2);
+}
+
+.produto:first-child {
+  margin-left: auto;
+}
+
+.produto:last-child {
+  margin-right: auto;
+}
+
+
+
+button {
+  display: flex;
+  background-color: #f9a8c0;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  margin-top: 0.5rem;
+   font-family: 'Quicksand', sans-serif;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #f9a8c0;
+}
+
+
+.hero {
+  background: linear-gradient(to bottom, #ffe0f0, #fff0f5);
+  text-align: center;
+  padding: 2rem 1rem 1rem;
+  box-shadow: 0 4px 6px rgba(255, 182, 193, 0.4);
+  border-bottom: 4px solid #f9a8c0;
+}
+
+.hero-logo {
+  width: 280px;
+  max-width: 90%;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.menu ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #fff5f8;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.menu a:hover {
+  color: #fff5f8;
+}
+
+
+
+.title {
+  display: flex;
+  flex: 1;
+  text-align: center;
+  font-size: 36px;
+  color: #f9a8c0;
+    font-family: 'Quicksand', sans-serif;
+}
+
+
+.btn-rosa-link {
+  color: #ffb1d8;
+  border: 2px solid #ffb1d8;
+  background-color: transparent;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  font-family: 'Quicksand', sans-serif;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.btn-rosa-link:hover {
+
+  color: #ffb1d8;
+  box-shadow: 0 4px 10px #ffb1d8;
+}
+
+
+
+

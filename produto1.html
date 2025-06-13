@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello Kitty Store</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="icon" href="./assets/fav.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./assets/css/produtos.css">
+  <link rel="stylesheet" href="./assets/css/footer.css">
+  <link rel="stylesheet" href="./assets/css/header.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+  <link href="https://fonts.googleapis.com/css??family-Montserrat:wght@200;300&display-swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- ICONS -->
+  <script src="https://kit.fontawesome.com/527f090d2a.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+  <div id="app">
+    <header>
+      <img class="fof" src="./img/fofura.png" alt="fofura" />
+      <h1 class="title">Kitty Store</h1>
+      <nav class="menu">
+        <ul>
+          <li><a href="./index.html">Início</a></li>
+          <li><a href="./loja.html">Loja</a></li>
+          <li><a href="./sobre.html">Sobre</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="product-display">
+      <div class="product-container">
+        <div class="product-image">
+          <img :src="currentImage" :alt="productTitle" />
+        </div>
+
+        <div class="product-info">
+          <h1>{{ productTitle }}</h1>
+
+          <div class="variants">
+            <div v-for="variant in variants" :key="variant.id" class="color-circle"
+              :style="{ backgroundColor: variant.color }" @mouseover="changeImage(variant.image)"
+              :title="'Cor: ' + variant.colorName">
+            </div>
+            
+            <button href="./loja.html">Comprar Agora</button>
+
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <footer>
+      <p>© 2025 Hello Kitty Funko Store - Feito com carinho</p>
+      <div class="icones-sociais">
+        <a href="https://wa.me/SEUNUMERO" target="_blank">
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+        <a href="mailto:contato@hellokittyloja.com">
+          <i class="fas fa-envelope"></i> E-mail
+        </a>
+        <a href="https://instagram.com/sualoja" target="_blank">
+          <i class="fab fa-instagram"></i> Instagram
+        </a>
+      </div>
+  </div>
+  </footer>
+
+
+  <script>
+    const { createApp, ref } = Vue;
+
+    createApp({
+      setup() {
+        const productTitle = 'Funko-Pop Kitty Cup-Noodles';
+
+        const variants = [
+          { id: 1, color: '#a7f442', colorName: 'Verde', image: 'img/h3verde.png' },
+          { id: 2, color: '#ffc0cb', colorName: 'Rosa', image: 'img/h3rosa.png' },
+          { id: 3, color: '#e0e500', colorName: 'Amarelo', image: 'img/h3amarelo.png' },
+          { id: 4, color: '#05a4df', colorName: 'Azul', image: 'img/h3azul.png' },
+          { id: 5, color: '#b70403', colorName: 'Vermelha', image: 'img/hk3.jpg' }
+        ];
+
+        const currentImage = ref(variants[0].image);
+
+        const changeImage = (img) => {
+          currentImage.value = img;
+        };
+
+        return {
+          productTitle,
+          variants,
+          currentImage,
+          changeImage
+        };
+      }
+    }).mount('#app');
+  </script>
+</body>
+
+
+</html>
