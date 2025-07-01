@@ -11,7 +11,8 @@
 
 <p align="center">
   <img src="./img/imagem2.png" alt="Minha Imagem" width="300">
-</p>
+<img src="./img/imagem4.png" alt="Minha Imagem" width="300">  
+</p>        
 
 <p align="center">
   <img src="./img/imagem4.png" alt="Minha Imagem" width="300">
