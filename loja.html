@@ -220,7 +220,7 @@
             currentImage: 'img/h5rosa.png'
           },
 
-          // Você pode adicionar mais produtos aqui se quiser
+    
         ]);
 
         const cartItems = ref([]);
@@ -263,7 +263,6 @@
         const checkout = () => {
           alert(`Compra finalizada! Total: R$ ${cartTotal.value.toFixed(2)}`);
           cartItems.value = [];
-          // Você poderia também repor os estoques aqui, se quiser
           showCart.value = false;
         };
 
