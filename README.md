@@ -11,10 +11,10 @@
 
 # RODAPÉ
 <p align="center">
-  <img src="./img/imagem4.png" alt="Minha Imagem" width="300">
+  <img src="./img/imagem4.png" alt="Minha Imagem" width="600">
 </p>
 
 # LOJA
 <p align="center">
-  <img src="./img/imagem5.png" alt="Minha Imagem" width="300">
+  <img src="./img/imagem7.png" alt="Minha Imagem" width="600">
 </p>
